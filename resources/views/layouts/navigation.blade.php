@@ -15,7 +15,30 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('personas.index')" :active="request()->routeIs('personas.index')">
+                        Personas
+                    </x-nav-link>
+
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-nav-link :href="route('tarjetas.index')" :active="request()->routeIs('tarjetas.index')">
+                            Tarjetas
+                        </x-nav-link>
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('unidades.index')" :active="request()->routeIs('unidades.index')">
+                                Unidades
+                            </x-nav-link>
+
+                            <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                                <x-nav-link :href="route('personaunidad.index')" :active="request()->routeIs('personaunidad.index')">
+                                    PersonaUnidad
+                                </x-nav-link>
+                    </div>
+                </div>
+
             </div>
 
             <!-- Settings Dropdown -->
