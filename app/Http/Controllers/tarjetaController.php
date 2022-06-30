@@ -60,7 +60,8 @@ class tarjetaController extends Controller
      */
     public function edit(Tarjeta $tarjeta)
     {
-        //
+            //Mostrar lavista de una tarjeta
+            return view('tarjetas.edit', compact('tarjeta'));
     }
 
     /**

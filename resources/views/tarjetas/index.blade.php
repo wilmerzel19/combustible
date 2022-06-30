@@ -1,13 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+        <h2 class="text-xl font-semibold leading-tight text-gray-800">
          Lista de Tarjetas
         </h2>
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+        <div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div class="overflow-hidden bg-white shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <!-- Mostrar en una tabla la lista de  tarjeta
                     -->
@@ -24,13 +24,15 @@
                     <tbody>
                         @foreach ($tarjetas as $tarjeta)
                             <tr>
-                                <td class="border px-4 py-2">{{ $tarjeta->codigo }}</td>
+                                <td class="px-4 py-2 border">{{ $tarjeta->codigo }}</td>
 
-                                <td class="border px-4 py-2">{{ $tarjeta->tipo_combustible }}</td>
+                                <td class="px-4 py-2 border">{{ $tarjeta->tipo_combustible }}</td>
 
-                                <td class="border px-4 py-2">{{ $tarjeta->actiones }}
-                                    <a href="{{ route('tarjetas.edit', $tarjeta->id) }}" class="text-blue-600 bg-blue-200 hover:text-blue-900">Editar</a>
-                                    <a href="{{ route('tarjetas.destroy', $tarjeta->id) }}" class="text-red-600 hover:text-red-900">Eliminar</a>
+                                <td class="px-4 py-2 border">{{ $tarjeta->actiones }}
+                                    <a href="{{ route('tarjetas.edit', $tarjeta->id) }}"
+                                        class="p-2 text-white rounded-lg bg-cyan-500 hover:text-blue-100">Editar</a>
+                                   <a href="{{ route('tarjetas.show', ["tarjeta" => $tarjeta->id, "confirmar_eliminado" => 1]) }}"
+                                        class="p-2 text-white bg-black rounded-lg hover:text-red-100">Eliminar</a>
                                 </td>
                             </tr>
                         @endforeach

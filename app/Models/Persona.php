@@ -15,4 +15,10 @@ class Persona extends Model
         'nombre',
         'cedula',
     ];
+    //Relaciones
+    public function Recorridos()
+    {
+        return $this->belongsToMany(Recorridos::class);
+    }
+
 }
