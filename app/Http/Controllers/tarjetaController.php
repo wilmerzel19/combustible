@@ -15,7 +15,7 @@ class tarjetaController extends Controller
     public function index()
     {
           // Extraer las personas dela base de datos
-          $tarjetas = Tarjeta::all();
+          $tarjetas = Tarjeta::paginate(20);
           //Devolver la vista y pasar las personas
           return view('tarjetas.index', compact('tarjetas'));
     }
@@ -27,7 +27,9 @@ class tarjetaController extends Controller
      */
     public function create()
     {
-        //
+        //Mostrar el formulario para crear una nueva persona
+
+        return view('tarjetas.create');
     }
 
     /**
@@ -38,7 +40,13 @@ class tarjetaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           //insertar una nueva persona en la base de datos
+           $tarjeta = new tarjeta();
+           $tarjeta->codigo = $request->codigo;
+           $tarjeta->tipo_combustible = $request->tipo_combustible;
+           $tarjeta->save();
+           return redirect('/tarjetas');
+
     }
 
     /**
@@ -49,7 +57,8 @@ class tarjetaController extends Controller
      */
     public function show(Tarjeta $tarjeta)
     {
-        //
+            //mostrar la persona en detalle
+            return view('tarjetas.show', compact('tarjeta'));
     }
 
     /**
@@ -73,7 +82,10 @@ class tarjetaController extends Controller
      */
     public function update(Request $request, Tarjeta $tarjeta)
     {
-        //
+         //Guardar los cambios en la base de datos
+         $tarjeta->update($request->all());
+         //Redireccionar al index de personas
+         return redirect()->route('tarjetas.index');
     }
 
     /**
@@ -84,6 +96,9 @@ class tarjetaController extends Controller
      */
     public function destroy(Tarjeta $tarjeta)
     {
-        //
+            //Eliminar la persona de la base de datos
+            $tarjeta->delete();
+            //Redireccionar al index de personas
+            return redirect()->route('tarjetas.index');
+      }
     }
-}

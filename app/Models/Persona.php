@@ -16,9 +16,10 @@ class Persona extends Model
         'cedula',
     ];
     //Relaciones
-    public function Recorridos()
+    public function recorridos()
     {
-        return $this->belongsToMany(Recorridos::class);
+        return $this->hasMany(PersonaUnidad::class, 'persona_id');
     }
+    
 
 }

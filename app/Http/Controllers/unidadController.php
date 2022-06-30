@@ -50,7 +50,9 @@ class unidadController extends Controller
      */
     public function show(Unidad $unidad)
     {
-        //
+
+            //mostrar la persona en detalle
+            return view('unidades.show', compact('unidad'));
     }
 
     /**
