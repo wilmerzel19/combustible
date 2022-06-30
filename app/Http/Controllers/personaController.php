@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Persona;
 use Illuminate\Http\Request;
 
-class personaController extends Controller
+class PersonaController extends Controller
 {
 
     public function index()
     {
         // Extraer las personas dela base de datos
-        $personas = Persona::all();
+        $personas = Persona::paginate(20);
         //Devolver la vista y pasar las personas
         return view('personas.index', compact('personas'));
     }
@@ -23,7 +23,9 @@ class personaController extends Controller
      */
     public function create()
     {
-        //
+        //Mostrar el formulario para crear una nueva persona
+
+        return view('personas.create', compact('personas'));
     }
 
     /**
@@ -34,7 +36,14 @@ class personaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //insertar una nueva persona en la base de datos
+         $persona = new Persona();
+         $persona->nombre = $request->nombre;
+         $persona->cedula = $request->cedula;
+         $persona->save();
+         return redirect('/personas');
+
+
     }
 
     /**
@@ -45,7 +54,8 @@ class personaController extends Controller
      */
     public function show(Persona $persona)
     {
-        //
+          //mostrar la persona en detalle
+          return view('personas.show', compact('persona'));
     }
 
     /**
@@ -56,7 +66,8 @@ class personaController extends Controller
      */
     public function edit(Persona $persona)
     {
-        //
+        //Mostrar lavista de una persona
+        return view('personas.edit', compact('persona'));
     }
 
     /**
@@ -68,7 +79,10 @@ class personaController extends Controller
      */
     public function update(Request $request, Persona $persona)
     {
-        //
+         //Guardar los cambios en la base de datos
+         $persona->update($request->all());
+         //Redireccionar al index de personas
+         return redirect()->route('personas.index');
     }
 
     /**
@@ -79,6 +93,9 @@ class personaController extends Controller
      */
     public function destroy(Persona $persona)
     {
-        //
+          //Eliminar la persona de la base de datos
+          $persona->delete();
+          //Redireccionar al index de personas
+          return redirect()->route('personas.index');
     }
 }

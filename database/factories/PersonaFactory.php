@@ -19,6 +19,7 @@ class PersonaFactory extends Factory
         return [
           'nombre'=> $this->faker->name,
           'cedula'=> $this->faker->creditCardNumber(),
+        
 
         ];
     }
