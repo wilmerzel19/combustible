@@ -25,7 +25,7 @@ class PersonaController extends Controller
     {
         //Mostrar el formulario para crear una nueva persona
 
-        return view('personas.create', compact('personas'));
+        return view('personas.create');
     }
 
     /**

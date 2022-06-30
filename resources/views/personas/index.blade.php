@@ -42,7 +42,7 @@
 
                                     <td class="px-4 py-2 border">{{ $persona->actiones }}
                                         <a href="{{ route('personas.edit', $persona->id) }}" class="text-blue-600 bg-blue-200 rounded-lg hover:text-blue-900">Editar</a>
-                                        <a href="{{ route('personas.destroy', $persona->id) }}" class="text-red-600 rounded-lg hover:text-red-900 ">Eliminar</a>
+                                        <a href="{{ route('personas.destroy', ['persona' => $persona->id, 'confirmar_eliminado'=> 1]) }}" class="text-red-600 rounded-lg hover:text-red-900 ">Eliminar</a>
                                     </td>
                                 </tr>
                             @endforeach
