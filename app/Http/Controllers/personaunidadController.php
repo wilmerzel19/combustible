@@ -15,9 +15,9 @@ class personaunidadController extends Controller
     public function index()
     {
          // Extraer las personas dela base de datos
-         $personasunidades=PersonaUnidad::all();
+         $personaunidades=PersonaUnidad::paginate(20);
          //Devolver la vista y pasar las personas
-         return view('personaunidad.index', compact('personasunidades'));
+         return view('personaunidad.index', compact('personaunidades'));
     }
 
     /**
@@ -27,7 +27,20 @@ class personaunidadController extends Controller
      */
     public function create()
     {
-        //
+
+        //extraer la lista de personas
+        $personas = \App\Models\Persona::query()
+        ->select('id', 'nombre')
+        ->get()
+        ->pluck('nombre', 'id');
+
+        $unidades= \App\Models\Unidad::query()
+        ->select('id', 'placa')
+        ->get()
+        ->pluck('placa', 'id');
+         //Mostrar el formulario para crear una nueva persona
+
+         return view('personaunidad.create', compact('personas','unidades'));
     }
 
     /**
@@ -38,7 +51,18 @@ class personaunidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+           //insertar una nueva persona en la base de datos
+           $personaunidades= new personaunidad();
+           $personaunidades->fecha= $request->fecha;
+           $personaunidades->km = $request->km;
+           $personaunidades->recorrido= $request->recorrido;
+           $personaunidades->litros= $request->litros;
+           $personaunidades->persona_id= $request->persona_id;
+           $personaunidades->unidad_id= $request->unidad_id;
+
+           $personaunidades->save();
+           return redirect('/personaunidad');
+
     }
 
     /**
@@ -47,9 +71,10 @@ class personaunidadController extends Controller
      * @param  \App\Models\PersonaUnidad  $personaUnidad
      * @return \Illuminate\Http\Response
      */
-    public function show(PersonaUnidad $personaUnidad)
+    public function show(PersonaUnidad $personaunidad)
     {
-        //
+            //mostrar la persona en detalle
+            return view('personaunidad.show', compact('personaunidad'));
     }
 
     /**
@@ -58,9 +83,20 @@ class personaunidadController extends Controller
      * @param  \App\Models\PersonaUnidad  $personaUnidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(PersonaUnidad $personaUnidad)
+    public function edit(PersonaUnidad $personaunidad)
     {
-        //
+         //extraer la lista de personas
+         $personas = \App\Models\Persona::query()
+         ->select('id', 'nombre')
+         ->get()
+         ->pluck('nombre', 'id');
+
+         $unidades = \App\Models\Unidad::query()
+         ->select('id', 'placa')
+         ->get()
+         ->pluck('placa', 'id');
+             //Mostrar lavista de una tarjeta
+             return view('personaunidad.edit', compact('personaunidad,','personas','unidades'));
     }
 
     /**
@@ -70,9 +106,12 @@ class personaunidadController extends Controller
      * @param  \App\Models\PersonaUnidad  $personaUnidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PersonaUnidad $personaUnidad)
+    public function update(Request $request, PersonaUnidad $personaunidad)
     {
-        //
+             //Eliminar la persona de la base de datos
+             $personaunidad->delete();
+             //Redireccionar al index de personas
+             return redirect()->route('personaunidad.index');
     }
 
     /**
@@ -81,8 +120,11 @@ class personaunidadController extends Controller
      * @param  \App\Models\PersonaUnidad  $personaUnidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PersonaUnidad $personaUnidad)
+    public function destroy(PersonaUnidad $personaunidad)
     {
-        //
+           //Eliminar la persona de la base de datos
+           $personaunidad->delete();
+           //Redireccionar al index de personas
+           return redirect()->route('personaunidad.index');
     }
 }

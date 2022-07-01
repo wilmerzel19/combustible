@@ -35,4 +35,3 @@ Route::resource('tarjetas', tarjetaController::class);
 Route::resource('unidades', unidadController::class);
 //Ruta para el controlador unidadcontroller
 Route::resource('personaunidad', personaunidadController::class);
-

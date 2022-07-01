@@ -24,6 +24,7 @@
                 <table class="w-full">
                     <thead>
                         <tr>
+                            <tr class='bg-cyan-600'>
                             <th class="px-4 py-2">placa</th>
 
                             <th class="px-4 py-2">Tipo_vehiculo</th>
@@ -43,7 +44,7 @@
                                 <td class="px-4 py-2 border">{{ $unidad->actiones }}
                                     <a href="{{ route('unidades.edit', $unidad->id) }}"
                                         class="p-2 text-white rounded-lg bg-cyan-500 hover:text-blue-100">@svg('gmdi-edit-calendar-s','w-6 h-6 text-black inline')</a>
-                                   <a href="{{ route('unidades.show', ["unidades" => $unidad->id, "confirmar_eliminado" => 1]) }}"
+                                   <a href="{{ route('unidades.show', ["unidade" => $unidad->id, "confirmar_eliminado" => 1]) }}"
                                         class="p-2 bg-black rounded-lg text-black-400 hover:text-red-100">@svg('gmdi-delete-forever-s','w-6 h-6 text-cyan-400 inline')</a>
                                 </td>
                             </tr>
@@ -53,7 +54,7 @@
                 </table>
                 <hr class="m-4">
                 {{
-                    $unidad->links()
+                    $unidades->links()
                  }}
                 </div>
             </div>

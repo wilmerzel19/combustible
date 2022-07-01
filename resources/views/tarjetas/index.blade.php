@@ -24,6 +24,7 @@
                 <table class="w-full">
                     <thead>
                         <tr>
+                            <tr class='bg-cyan-600'>
                             <th class="px-4 py-2">Codigo</th>
 
                             <th class="px-4 py-2">Tipo_combustible</th>
@@ -37,7 +38,7 @@
                                 <td class="px-4 py-2 border">{{ $tarjeta->codigo }}</td>
 
                                 <td class="px-4 py-2 border">{{ $tarjeta->tipo_combustible }}</td>
-                              
+
 
 
                                 <td class="px-4 py-2 border">{{ $tarjeta->actiones }}

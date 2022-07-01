@@ -16,9 +16,9 @@ class unidadController extends Controller
     {
 
           // Extraer las personas dela base de datos
-          $unidades = Unidad::all();
+          $unidades= Unidad::paginate(20);
           //Devolver la vista y pasar las personas
-          return view('unidad.index', compact('unidades'));
+          return view('unidades.index', compact('unidades'));
     }
 
     /**
@@ -28,7 +28,9 @@ class unidadController extends Controller
      */
     public function create()
     {
-        //
+          //Mostrar el formulario para crear una nueva persona
+
+          return view('unidades.create');
     }
 
     /**
@@ -39,7 +41,14 @@ class unidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         //insertar una nueva persona en la base de datos
+         $unidades= new unidad();
+         $unidades->placa= $request->placa;
+         $unidades->tipo_vehiculo = $request->tipo_vehiculo;
+         $unidades->tarjeta_id = $request->tarjeta_id;
+         $unidades->save();
+         return redirect('/unidades');
+
     }
 
     /**
@@ -48,11 +57,11 @@ class unidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function show(Unidad $unidad)
+    public function show(Unidad $unidade)
     {
 
             //mostrar la persona en detalle
-            return view('unidades.show', compact('unidad'));
+            return view('unidades.show', compact('unidade'));
     }
 
     /**
@@ -61,10 +70,13 @@ class unidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function edit(Unidad $unidad)
+    public function edit(Unidad $unidade)
     {
-        //
+
+            //Mostrar lavista de una tarjeta
+            return view('unidades.edit', compact('unidade'));
     }
+
 
     /**
      * Update the specified resource in storage.
@@ -73,9 +85,12 @@ class unidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Unidad $unidad)
+    public function update(Request $request, Unidad $unidade)
     {
-        //
+        //Guardar los cambios en la base de datos
+        $unidade->update($request->all());
+        //Redireccionar al index de personas
+        return redirect()->route('unidades.index');
     }
 
     /**
@@ -84,8 +99,11 @@ class unidadController extends Controller
      * @param  \App\Models\Unidad  $unidad
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Unidad $unidad)
+    public function destroy(Unidad $unidade)
     {
-        //
+        //Eliminar la persona de la base de datos
+        $unidade->delete();
+        //Redireccionar al index de personas
+        return redirect()->route('unidades.index');
+  }
     }
-}
