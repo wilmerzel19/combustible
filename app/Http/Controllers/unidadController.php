@@ -16,9 +16,9 @@ class unidadController extends Controller
     {
 
           // Extraer las personas dela base de datos
-          $unidades= Unidad::paginate(20);
+          $unidade= Unidad::paginate(20);
           //Devolver la vista y pasar las personas
-          return view('unidades.index', compact('unidades'));
+          return view('unidades.index', compact('unidade'));
     }
 
     /**

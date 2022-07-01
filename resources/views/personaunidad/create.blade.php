@@ -20,7 +20,7 @@
                             <x-app-input text="litros" valor="{{ old('litros') }}" required="true" id="litros" />
                             <x-app-select text="persona_id" :datos=" $personas " required="true" id="persona_id" />
 
-                            <x-app-select text="unidad_id" :datos="$unidades" required="true" id="unidad_id" />
+                            <x-app-select text="unidad_id" :datos=" $unidades" required="true" id="unidad_id" />
 
                         </div>
 

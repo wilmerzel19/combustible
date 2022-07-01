@@ -34,7 +34,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($unidades as $unidad)
+                        @foreach ($unidade as $unidad)
                             <tr>
                                 <td class="px-4 py-2 border">{{ $unidad->placa}}</td>
 
@@ -54,7 +54,7 @@
                 </table>
                 <hr class="m-4">
                 {{
-                    $unidades->links()
+                    $unidade->links()
                  }}
                 </div>
             </div>

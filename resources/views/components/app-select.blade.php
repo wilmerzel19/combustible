@@ -3,6 +3,7 @@
     'texto' => '',
     'id' => '',
     'required' => false,
+    'valor' => '',
 ])
 <div class="col-span-1">
     <label for="{{ $id }}" class="block text-sm font-medium leading-5 text-gray-700">
@@ -13,9 +14,9 @@
             id="{{ $id }}"
             name="{{ $id }}"
             class="form-input block w-full sm:text-sm sm:leading-5 p-4 focus:border focus:border-blue-500"
-            {{ $required ? 'required' : '' }}/>
+            {{ $required ? 'required' : '' }}>
             @foreach($datos as $numero => $dato)
-                <option value="{{ $numero }}">{{ $dato }}</option>
+                <option @selected($numero===$valor) value="{{ $numero }}">{{ $dato }}</option>
             @endforeach
         </select>
     </div>

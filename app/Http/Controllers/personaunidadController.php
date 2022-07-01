@@ -96,7 +96,7 @@ class personaunidadController extends Controller
          ->get()
          ->pluck('placa', 'id');
              //Mostrar lavista de una tarjeta
-             return view('personaunidad.edit', compact('personaunidad,','personas','unidades'));
+             return view('personaunidad.edit', compact('personaunidad','personas','unidades'));
     }
 
     /**
